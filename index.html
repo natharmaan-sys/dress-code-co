@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Dress Code Co. — End-to-End Uniform Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0e0e0e;
+    --off-white: #f7f4ef;
+    --cream: #ede9e1;
+    --gold: #c9a84c;
+    --gold-light: #e8d49a;
+    --text-muted: #6b6560;
+    --text-mid: #3a3530;
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--off-white);
+    color: var(--black);
+    overflow-x: hidden;
+  }
+
+  /* ---- NAV ---- */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(247, 244, 239, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid rgba(201,168,76,0.2);
+    transition: padding 0.3s;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--black);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.6rem;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+  .nav-cta:hover { background: var(--gold); color: #fff; }
+
+  /* ---- HERO ---- */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 80px;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6rem 4rem 6rem 4rem;
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block; width: 40px; height: 1px;
+    background: var(--gold);
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 300;
+    line-height: 1.08;
+    color: var(--black);
+    margin-bottom: 2rem;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-sub {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--text-muted);
+    max-width: 440px;
+    margin-bottom: 3rem;
+  }
+  .hero-actions { display: flex; gap: 1.2rem; align-items: center; }
+  .btn-primary {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 1rem 2.4rem;
+    background: var(--black);
+    color: var(--off-white);
+    text-decoration: none;
+    transition: background 0.25s;
+  }
+  .btn-primary:hover { background: var(--gold); }
+  .btn-ghost {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 0.5rem;
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--gold); }
+  .btn-ghost svg { width: 16px; height: 16px; }
+
+  .hero-right {
+    background: var(--cream);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-pattern {
+    position: absolute; inset: 0;
+    background-image: 
+      repeating-linear-gradient(45deg, rgba(201,168,76,0.06) 0, rgba(201,168,76,0.06) 1px, transparent 0, transparent 50%);
+    background-size: 28px 28px;
+  }
+  .hero-stat-stack {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; gap: 1.5rem;
+    padding: 3rem;
+  }
+  .hero-stat-card {
+    background: var(--off-white);
+    padding: 1.8rem 2.2rem;
+    border-left: 3px solid var(--gold);
+    min-width: 280px;
+    animation: slideIn 0.8s ease both;
+  }
+  .hero-stat-card:nth-child(2) { animation-delay: 0.15s; margin-left: 2rem; }
+  .hero-stat-card:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--black);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* ---- TRUST BAR ---- */
+  .trust-bar {
+    background: var(--black);
+    padding: 1.2rem 4rem;
+    display: flex; align-items: center; justify-content: center;
+    gap: 4rem;
+    overflow: hidden;
+  }
+  .trust-item {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(247,244,239,0.5);
+    white-space: nowrap;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .trust-item::before { content: '◆'; color: var(--gold); font-size: 0.5rem; }
+
+  /* ---- SECTION SHARED ---- */
+  section { padding: 7rem 4rem; }
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex; align-items: center; gap: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  .section-label::before { content: ''; display: block; width: 30px; height: 1px; background: var(--gold); }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--black);
+    margin-bottom: 1.5rem;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+  .section-sub {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    max-width: 560px;
+  }
+
+  /* ---- INDUSTRIES ---- */
+  #industries { background: var(--cream); }
+  .industries-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin-top: 4rem;
+    background: rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  .industry-card {
+    background: var(--cream);
+    padding: 2.5rem 2rem;
+    transition: background 0.3s;
+    cursor: default;
+  }
+  .industry-card:hover { background: var(--off-white); }
+  .industry-icon {
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+  .industry-name {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 0.6rem;
+    color: var(--black);
+  }
+  .industry-desc {
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+  }
+
+  /* ---- PROCESS ---- */
+  #process { background: var(--black); color: var(--off-white); }
+  #process .section-title { color: var(--off-white); }
+  #process .section-sub { color: rgba(247,244,239,0.55); }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    margin-top: 5rem;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 2.2rem; left: 10%; right: 10%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), var(--gold), transparent);
+  }
+  .process-step { padding: 0 1.5rem; text-align: center; position: relative; }
+  .step-num {
+    width: 44px; height: 44px;
+    border: 1px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--gold);
+    background: var(--black);
+    position: relative; z-index: 1;
+  }
+  .step-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--off-white);
+    margin-bottom: 0.6rem;
+  }
+  .step-desc {
+    font-size: 0.8rem;
+    line-height: 1.7;
+    color: rgba(247,244,239,0.45);
+  }
+
+
+  /* ---- WHY US ---- */
+  #why {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding: 0;
+  }
+  .why-left {
+    background: var(--off-white);
+    padding: 7rem 4rem;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .why-right {
+    background: var(--cream);
+    padding: 7rem 4rem;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .why-list { list-style: none; margin-top: 3rem; display: flex; flex-direction: column; gap: 1.5rem; }
+  .why-item {
+    display: flex; gap: 1.2rem; align-items: flex-start;
+    padding-bottom: 1.5rem;
+    border-bottom: 0.5px solid rgba(0,0,0,0.08);
+  }
+  .why-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .why-num {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--gold);
+    opacity: 0.7;
+    min-width: 20px;
+    margin-top: 0.1rem;
+  }
+  .why-text strong {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--black);
+    margin-bottom: 0.3rem;
+  }
+  .why-text p { font-size: 0.82rem; line-height: 1.7; color: var(--text-muted); }
+
+  .why-feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
+  .feature-box {
+    background: var(--off-white);
+    padding: 1.8rem;
+    border-bottom: 2px solid var(--gold);
+  }
+  .feature-box .num {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    font-weight: 300;
+    color: var(--black);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .feature-box .label {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* ---- CUSTOMISATION ---- */
+  #custom { background: var(--off-white); }
+  .custom-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 4rem;
+    background: rgba(0,0,0,0.06);
+  }
+  .custom-card {
+    background: var(--off-white);
+    padding: 2.5rem 2rem;
+    transition: background 0.3s;
+  }
+  .custom-card:hover { background: var(--cream); }
+  .custom-card-icon {
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+  }
+  .custom-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 0.8rem;
+    color: var(--black);
+  }
+  .custom-card p {
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+  }
+
+  /* ---- TESTIMONIALS ---- */
+  #testimonials { background: var(--cream); }
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+  .testi-card {
+    background: var(--off-white);
+    padding: 2.5rem;
+    position: relative;
+  }
+  .testi-quote {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    line-height: 1;
+    color: var(--gold-light);
+    position: absolute;
+    top: 1rem; right: 2rem;
+    font-weight: 300;
+  }
+  .testi-text {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--text-mid);
+    margin-bottom: 2rem;
+    font-style: italic;
+    font-family: var(--font-display);
+  }
+  .testi-author strong {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--black);
+  }
+  .testi-author span {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+  .testi-stars { color: var(--gold); font-size: 0.75rem; margin-bottom: 1rem; }
+
+  /* ---- FAQ ---- */
+  #faq { background: var(--off-white); }
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 4rem;
+    align-items: start;
+  }
+  .faq-list { display: flex; flex-direction: column; }
+  .faq-item { border-bottom: 0.5px solid rgba(0,0,0,0.1); }
+  .faq-q {
+    width: 100%;
+    text-align: left;
+    padding: 1.4rem 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--black);
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 1rem;
+  }
+  .faq-q span { font-size: 1.2rem; color: var(--gold); transition: transform 0.25s; }
+  .faq-a {
+    font-size: 0.84rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.35s;
+  }
+  .faq-a.open { max-height: 200px; padding-bottom: 1.2rem; }
+  .faq-item.active .faq-q span { transform: rotate(45deg); }
+
+  /* ---- CONTACT ---- */
+  #contact { background: var(--black); color: var(--off-white); padding: 7rem 4rem; }
+  #contact .section-title { color: var(--off-white); }
+  #contact .section-sub { color: rgba(247,244,239,0.5); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    margin-top: 4rem;
+  }
+  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(247,244,239,0.4);
+  }
+  .form-group input, .form-group select, .form-group textarea {
+    background: rgba(247,244,239,0.06);
+    border: 0.5px solid rgba(247,244,239,0.15);
+    color: var(--off-white);
+    padding: 0.9rem 1rem;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: vertical;
+    -webkit-appearance: none;
+  }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(247,244,239,0.2); }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); }
+  .form-group select option { background: var(--black); }
+  .submit-btn {
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    padding: 1rem 2.5rem;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    align-self: flex-start;
+  }
+  .submit-btn:hover { opacity: 0.85; }
+
+  .contact-info { display: flex; flex-direction: column; gap: 2.5rem; }
+  .contact-block h4 {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.7rem;
+  }
+  .contact-block p {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: rgba(247,244,239,0.6);
+  }
+  .whatsapp-btn {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    background: #25D366;
+    color: white;
+    padding: 0.8rem 1.6rem;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    transition: opacity 0.2s;
+    margin-top: 0.5rem;
+  }
+  .whatsapp-btn:hover { opacity: 0.9; }
+
+  /* ---- FOOTER ---- */
+  footer {
+    background: #070707;
+    padding: 3rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 0.5px solid rgba(255,255,255,0.05);
+  }
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--off-white);
+  }
+  .footer-logo span { color: var(--gold); }
+  footer p {
+    font-size: 0.78rem;
+    color: rgba(247,244,239,0.25);
+  }
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(247,244,239,0.3);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ---- ANIMATIONS ---- */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---- MOBILE ---- */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 5rem 1.5rem 4rem; }
+    section { padding: 5rem 1.5rem; }
+    .industries-grid { grid-template-columns: 1fr 1fr; }
+    .process-steps { grid-template-columns: 1fr; gap: 2rem; }
+    .process-steps::before { display: none; }
+    #why { grid-template-columns: 1fr; }
+    .custom-grid { grid-template-columns: 1fr 1fr; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .faq-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+    .trust-bar { gap: 2rem; flex-wrap: wrap; padding: 1rem 1.5rem; }
+    .why-feature-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">The Dress Code <span>Co.</span></a>
+  <ul class="nav-links">
+    <li><a href="#industries">Industries</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#custom">Products</a></li>
+    <li><a href="#testimonials">Clients</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get a Quote</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Uniform Solutions</p>
+    <h1 class="hero-title">
+      Dressed for<br>
+      every <em>occasion,</em><br>
+      every industry.
+    </h1>
+    <p class="hero-sub">
+      From concept to delivery — we design, sample, manufacture and ship 
+      custom uniforms for schools, hospitals, factories, retail and more. 
+      One partner. The complete solution.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Request a Quote</a>
+      <a href="#process" class="btn-ghost">
+        See how it works
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 8h10M9 4l4 4-4 4"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">Design & Conceptualisation</div>
+  <div class="trust-item">Sampling</div>
+  <div class="trust-item">Manufacturing</div>
+  <div class="trust-item">Delivery & Logistics</div>
+  <div class="trust-item">Pan-India & International Delivery</div>
+</div>
+
+<!-- INDUSTRIES -->
+<section id="industries">
+  <div class="fade-up">
+    <p class="section-label">Who we serve</p>
+    <h2 class="section-title">Built for every <em>uniform</em> need</h2>
+    <p class="section-sub">Whether you manage a 50-student school or a 2,000-person factory floor, we have the experience and infrastructure to deliver.</p>
+  </div>
+  <div class="industries-grid fade-up">
+    <div class="industry-card">
+      <span class="industry-icon">🏫</span>
+      <div class="industry-name">Schools & Colleges</div>
+      <p class="industry-desc">Blazers, shirts, trousers, PE kits, ties, and more — designed to your school's colours and crest.</p>
+    </div>
+    <div class="industry-card">
+      <span class="industry-icon">🏥</span>
+      <div class="industry-name">Hospitals & Clinics</div>
+      <p class="industry-desc">Scrubs, lab coats, aprons, and patient-care attire made from breathable, durable fabrics.</p>
+    </div>
+    <div class="industry-card">
+      <span class="industry-icon">🏭</span>
+      <div class="industry-name">Factory & Industrial</div>
+      <p class="industry-desc">Hi-visibility wear, overalls, safety vests and workwear that meets compliance standards.</p>
+    </div>
+    <div class="industry-card">
+      <span class="industry-icon">🛍️</span>
+      <div class="industry-name">Retail Staff</div>
+      <p class="industry-desc">Branded polos, aprons, and smart-casual staff wear that puts your brand front and centre.</p>
+    </div>
+    <div class="industry-card">
+      <span class="industry-icon">🍽️</span>
+      <div class="industry-name">Hospitality</div>
+      <p class="industry-desc">Hotels, restaurants, and front-of-house staff uniforms that leave a lasting impression.</p>
+    </div>
+    <div class="industry-card">
+      <span class="industry-icon">🏢</span>
+      <div class="industry-name">Corporate & Offices</div>
+      <p class="industry-desc">Professional, cohesive attire for front-desk teams, receptionists, and client-facing staff.</p>
+    </div>
+    <div class="industry-card">
+      <span class="industry-icon">🛡️</span>
+      <div class="industry-name">Security</div>
+      <p class="industry-desc">Smart, authoritative security uniforms built for durability and a commanding presence.</p>
+    </div>
+    <div class="industry-card">
+      <span class="industry-icon">✈️</span>
+      <div class="industry-name">Aviation & Logistics</div>
+      <p class="industry-desc">Ground crew, cabin crew, and logistics staff uniforms made to airline-grade standards.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="fade-up">
+    <p class="section-label">How we work</p>
+    <h2 class="section-title">From idea to <em>delivery,</em><br>we handle everything</h2>
+    <p class="section-sub">One partner manages the entire journey. No chasing multiple vendors, no miscommunication, no stress.</p>
+  </div>
+  <div class="process-steps fade-up">
+    <div class="process-step">
+      <div class="step-num">01</div>
+      <div class="step-title">Design & Concept</div>
+      <p class="step-desc">We consult with you, understand your brand, and create design options tailored to your needs.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">02</div>
+      <div class="step-title">Sampling</div>
+      <p class="step-desc">Physical samples are produced and sent for your review before any bulk order is confirmed.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">03</div>
+      <div class="step-title">Manufacturing</div>
+      <p class="step-desc">Full production begins in our quality-controlled facility with regular progress updates.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">05</div>
+      <div class="step-title">Delivery</div>
+      <p class="step-desc">Packaged and delivered to your door. Logistics managed end to end.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why" style="padding:0;">
+  <div class="why-left">
+    <div class="fade-up">
+      <p class="section-label">Why us</p>
+      <h2 class="section-title">The complete<br><em>uniform</em> partner</h2>
+    </div>
+    <ul class="why-list fade-up">
+      <li class="why-item">
+        <span class="why-num">01</span>
+        <div class="why-text">
+          <strong>True end-to-end service</strong>
+          <p>Design, sampling, manufacturing, and delivery — all under one roof. No juggling multiple vendors.</p>
+        </div>
+      </li>
+      <li class="why-item">
+        <span class="why-num">02</span>
+        <div class="why-text">
+          <strong>Dedicated account manager</strong>
+          <p>One point of contact from your first call to final delivery. You'll always know who to call.</p>
+        </div>
+      </li>
+      <li class="why-item">
+        <span class="why-num">03</span>
+        <div class="why-text">
+          <strong>Samples before you commit</strong>
+          <p>See and feel the product before placing a bulk order. No surprises, no risk.</p>
+        </div>
+      </li>
+      <li class="why-item">
+        <span class="why-num">04</span>
+        <div class="why-text">
+          <strong>Bulk pricing advantage</strong>
+          <p>Competitive pricing for all order sizes, with better rates the larger your order.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="why-right">
+    <div class="fade-up">
+      <p class="section-label">By the numbers</p>
+      <h2 class="section-title">Quality<br>you can <em>count on</em></h2>
+    </div>
+    <div class="why-feature-grid fade-up">
+      <div class="feature-box">
+        <div class="num">500+</div>
+        <div class="label">Happy clients</div>
+      </div>
+      <div class="feature-box">
+        <div class="num">8+</div>
+        <div class="label">Industries served</div>
+      </div>
+      <div class="feature-box">
+        <div class="num">100%</div>
+        <div class="label">In-house production</div>
+      </div>
+      <div class="feature-box">
+        <div class="num">🌍</div>
+        <div class="label">Pan-India & international delivery</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOMISATION -->
+<section id="custom">
+  <div class="fade-up">
+    <p class="section-label">What we offer</p>
+    <h2 class="section-title">Every detail,<br><em>your way</em></h2>
+    <p class="section-sub">Full customisation from fabric choice to final stitch — uniforms that look exactly the way you envisioned.</p>
+  </div>
+  <div class="custom-grid fade-up">
+    <div class="custom-card">
+      <div class="custom-card-icon">🎨</div>
+      <h3>Custom Design</h3>
+      <p>Our in-house designers work with your brand guidelines to create uniforms that are truly yours. Logo placement, colour matching, typography — all considered.</p>
+    </div>
+    <div class="custom-card">
+      <div class="custom-card-icon">🧵</div>
+      <h3>Fabric Selection</h3>
+      <p>Choose from cotton, polyester blends, anti-bacterial fabrics, hi-vis materials, and more — matched to the demands of your environment.</p>
+    </div>
+    <div class="custom-card">
+      <div class="custom-card-icon">🖨️</div>
+      <h3>Branding Methods</h3>
+      <p>Embroidery, screen printing, heat transfer, woven labels, and Pantone colour matching — we apply your brand the right way for each garment type.</p>
+    </div>
+    <div class="custom-card">
+      <div class="custom-card-icon">📐</div>
+      <h3>Sizing</h3>
+      <p>Standard size runs plus custom sizing for unique requirements. Gender-inclusive options available across all garment types.</p>
+    </div>
+    <div class="custom-card">
+      <div class="custom-card-icon">📦</div>
+      <h3>Order Flexibility</h3>
+      <p>From small pilot orders to large-scale institutional bulk — we cater to organisations of all sizes with minimum order quantities to suit you.</p>
+    </div>
+    <div class="custom-card">
+      <div class="custom-card-icon">🔄</div>
+      <h3>Easy Reorders</h3>
+      <p>All your specifications are saved. Future reorders are seamless — just tell us what you need and we pick up where we left off.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="fade-up">
+    <p class="section-label">Client stories</p>
+    <h2 class="section-title">Trusted by organisations<br>across <em>India</em></h2>
+  </div>
+  <div class="testi-grid fade-up">
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">The Dress Code Co. handled everything from design to delivery. Our school uniforms were ready well before the academic year and the quality exceeded our expectations.</p>
+      <div class="testi-author">
+        <strong>Principal Meena Sharma</strong>
+        <span>Delhi Public School, New Delhi</span>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">We needed hospital scrubs for 300 staff at short notice. The team delivered on time, within budget, and the fabric quality is excellent. Will order again without hesitation.</p>
+      <div class="testi-author">
+        <strong>Mr. Rakesh Gupta</strong>
+        <span>Purchase Manager, City Care Hospital</span>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">Our retail team looks sharp and consistent across all 12 stores. The account manager made the process incredibly smooth. The branding on the uniforms is perfect.</p>
+      <div class="testi-author">
+        <strong>Priya Nair</strong>
+        <span>Operations Head, FreshMart Retail</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="fade-up">
+    <p class="section-label">FAQ</p>
+    <h2 class="section-title">Common <em>questions</em></h2>
+  </div>
+  <div class="faq-grid fade-up">
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What is your minimum order quantity?
+          <span>+</span>
+        </button>
+        <div class="faq-a">Minimum order quantities vary by garment type and depend on the design complexity and type of uniform required. Get in touch with us and we'll advise the right minimum based on your specific needs.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How long does a full order take from start to finish?
+          <span>+</span>
+        </button>
+        <div class="faq-a">Every order is different, but as a general guide: design can take up to a week, sampling typically takes around 2 weeks depending on the complexity of the garment, and manufacturing can take up to a month. We know the industry's reputation — most manufacturers miss deadlines and leave clients in the dark. We do things differently. We commit to a timeline, we stick to it, and we keep you informed at every stage of the process so you always know exactly where your order stands.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can I get a sample before placing a bulk order?
+          <span>+</span>
+        </button>
+        <div class="faq-a">Absolutely. We strongly recommend sampling before bulk production. We produce a physical sample for your review and approval before any large-scale manufacturing begins.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do you help with logo or uniform design?
+          <span>+</span>
+        </button>
+        <div class="faq-a">Yes — our in-house design team can help conceptualise your uniform from scratch or work with your existing branding. Design consultation is part of our service.</div>
+      </div>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do you deliver across India?
+          <span>+</span>
+        </button>
+        <div class="faq-a">Yes, we deliver pan-India. Logistics is managed end to end — you don't need to arrange your own shipping. International delivery is available on request.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What file format do I need for my logo?
+          <span>+</span>
+        </button>
+        <div class="faq-a">We recommend vector files (.ai, .eps, or .pdf) for best results. High-resolution .png files are also accepted. If you only have a low-res logo, our design team can redraw it.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What is your return or alteration policy?
+          <span>+</span>
+        </button>
+        <div class="faq-a">We stand behind the quality of every order. If garments do not match approved samples or specifications, we will rectify or replace them at no additional cost.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can you accommodate custom sizing?
+          <span>+</span>
+        </button>
+        <div class="faq-a">Yes. We offer standard size runs as well as custom sizing for teams with specific requirements. Simply provide measurements during the order confirmation stage.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="fade-up">
+    <p class="section-label">Get in touch</p>
+    <h2 class="section-title">Let's build your<br><em>uniform programme</em></h2>
+    <p class="section-sub">Tell us what you need and we'll get back to you within one business day with a personalised quote.</p>
+  </div>
+  <div class="contact-grid fade-up">
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Full name</label>
+          <input type="text" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label>Organisation</label>
+          <input type="text" placeholder="School / company name">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group">
+          <label>Phone / WhatsApp</label>
+          <input type="tel" placeholder="+91 XXXXX XXXXX">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Industry / Sector</label>
+        <input type="text" placeholder="e.g. School, Hospital, Retail...">
+      </div>
+      <div class="form-group">
+        <label>Tell us about your requirement</label>
+        <textarea rows="4" placeholder="Quantity, garment type, timeline, any special requirements..."></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Send Enquiry →</button>
+    </form>
+    <div class="contact-info">
+      <div class="contact-block">
+        <h4>WhatsApp us directly</h4>
+        <p>For quick enquiries, reach us on WhatsApp. Most queries responded to within the hour.</p>
+        <a href="https://wa.me/919718880866" class="whatsapp-btn" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Chat on WhatsApp
+        </a>
+      </div>
+      <div class="contact-block">
+        <h4>Call us</h4>
+        <p><a href="tel:+919910232211" style="color: rgba(247,244,239,0.6); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='rgba(247,244,239,0.6)'">+91 99102 32211</a></p>
+      </div>
+      <div class="contact-block">
+        <h4>Email</h4>
+        <p><a href="mailto:natharmaan@gmail.com" style="color: rgba(247,244,239,0.6); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='rgba(247,244,239,0.6)'">natharmaan@gmail.com</a></p>
+      </div>
+      <div class="contact-block">
+        <h4>Office</h4>
+        <p>46, Hosiery Complex Block B Rd,<br>Hosiery Complex, Block B,<br>Noida Phase-2, Noida,<br>Uttar Pradesh 201304</p>
+      </div>
+      <div class="contact-block">
+        <h4>Working hours</h4>
+        <p>Monday – Saturday<br>9:00 AM – 6:30 PM IST</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script>
+  // Fade-up on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // FAQ accordion
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const ans = item.querySelector('.faq-a');
+    const isOpen = item.classList.contains('active');
+    document.querySelectorAll('.faq-item.active').forEach(i => {
+      i.classList.remove('active');
+      i.querySelector('.faq-a').classList.remove('open');
+    });
+    if (!isOpen) {
+      item.classList.add('active');
+      ans.classList.add('open');
+    }
+  }
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.submit-btn');
+    btn.textContent = 'Enquiry sent ✓';
+    btn.style.background = '#2a7a4b';
+    btn.style.color = '#fff';
+    setTimeout(() => {
+      btn.textContent = 'Send Enquiry →';
+      btn.style.background = '';
+      btn.style.color = '';
+      e.target.reset();
+    }, 3000);
+  }
+</script>
+</body>
+</html>
