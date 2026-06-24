@@ -103,13 +103,46 @@
   /* ---- HERO ---- */
   #hero {
     min-height: 100vh;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
     align-items: center;
     padding-top: 80px;
+    gap: 2rem;
   }
   .hero-left {
     display: flex; flex-direction: column; justify-content: center;
-    padding: 6rem 4rem 6rem 4rem;
+    padding: 6rem 2rem 6rem 4rem;
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    padding: 6rem 4rem 6rem 2rem;
+  }
+  .hero-stat-box {
+    background: var(--cream);
+    padding: 1.8rem 1.6rem;
+    border-bottom: 2px solid var(--gold);
+    transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease;
+  }
+  .hero-stat-box:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.08);
+  }
+  .hero-stat-box .num {
+    font-family: var(--font-display);
+    font-size: 2.6rem;
+    font-weight: 300;
+    color: var(--black);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .hero-stat-box .label {
+    font-size: 0.74rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    line-height: 1.5;
   }
   .hero-eyebrow {
     font-size: 0.75rem;
@@ -393,7 +426,14 @@
     padding: 7rem 4rem;
     display: flex; flex-direction: column; justify-content: center;
   }
-  .why-list { list-style: none; margin-top: 3rem; display: flex; flex-direction: column; gap: 1.5rem; }
+  .why-intro {
+    font-size: 0.95rem;
+    line-height: 1.85;
+    color: var(--text-muted);
+    margin-top: 1.8rem;
+    max-width: 520px;
+  }
+  .why-list { list-style: none; margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
   .why-item {
     display: flex; gap: 1.2rem; align-items: flex-start;
     padding-bottom: 1.5rem;
@@ -913,9 +953,11 @@
   @media (max-width: 900px) {
     nav { padding: 1rem 1.5rem; }
     .nav-links { display: none; }
-    #hero { grid-template-columns: 1fr; }
-    .hero-right { display: none; }
-    .hero-left { padding: 5rem 1.5rem 4rem; }
+    #hero { grid-template-columns: 1fr; gap: 0; }
+    .hero-left { padding: 5rem 1.5rem 2rem; }
+    .hero-stats { padding: 0 1.5rem 4rem; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .hero-stat-box { padding: 1.4rem 1.2rem; }
+    .hero-stat-box .num { font-size: 2.1rem; }
     section { padding: 5rem 1.5rem; }
     .industries-grid { grid-template-columns: 1fr 1fr; }
     .process-steps { grid-template-columns: 1fr; gap: 2rem; }
@@ -973,6 +1015,24 @@
           <path d="M3 8h10M9 4l4 4-4 4"/>
         </svg>
       </a>
+    </div>
+  </div>
+  <div class="hero-stats stagger">
+    <div class="hero-stat-box">
+      <div class="num" data-target="200" data-suffix="+">200+</div>
+      <div class="label">Happy customers</div>
+    </div>
+    <div class="hero-stat-box">
+      <div class="num" data-target="8" data-suffix="+">8+</div>
+      <div class="label">Industries served</div>
+    </div>
+    <div class="hero-stat-box">
+      <div class="num" data-target="100" data-suffix="%">100%</div>
+      <div class="label">In-house production</div>
+    </div>
+    <div class="hero-stat-box">
+      <div class="num">🌍</div>
+      <div class="label">Pan-India &amp; international delivery</div>
     </div>
   </div>
 </section>
@@ -1098,6 +1158,7 @@
     <div class="reveal from-left">
       <p class="section-label">Why us</p>
       <h2 class="section-title">The complete<br><em>uniform</em> partner</h2>
+      <p class="why-intro">It starts with design. We help you conceptualise what your customer facing team should look like and translate your brand into uniforms that feel unmistakably yours. Our focus is on getting the details right: garments that are functional, comfortable, well-priced, and look genuinely great. From that first idea all the way through to delivery, we make the whole process simple.</p>
     </div>
     <ul class="why-list stagger">
       <li class="why-item">
@@ -1110,26 +1171,19 @@
       <li class="why-item">
         <span class="why-num">02</span>
         <div class="why-text">
-          <strong>Dedicated account manager</strong>
-          <p>One point of contact from your first call to final delivery. You'll always know who to call.</p>
-        </div>
-      </li>
-      <li class="why-item">
-        <span class="why-num">03</span>
-        <div class="why-text">
           <strong>Samples before you commit</strong>
           <p>See and feel the product before placing a bulk order. No surprises, no risk.</p>
         </div>
       </li>
       <li class="why-item">
-        <span class="why-num">04</span>
+        <span class="why-num">03</span>
         <div class="why-text">
           <strong>Expert guidance</strong>
           <p>We help you decide what works best for your brand — balancing quality, cost, and design so the result looks great and makes sense.</p>
         </div>
       </li>
       <li class="why-item">
-        <span class="why-num">05</span>
+        <span class="why-num">04</span>
         <div class="why-text">
           <strong>Bulk pricing advantage</strong>
           <p>Competitive pricing for all order sizes, with better rates the larger your order.</p>
@@ -1139,26 +1193,9 @@
   </div>
   <div class="why-right">
     <div class="reveal from-right">
-      <p class="section-label">By the numbers</p>
+      <p class="section-label">Our promise</p>
       <h2 class="section-title">Quality<br>you can <em>count on</em></h2>
-    </div>
-    <div class="why-feature-grid stagger">
-      <div class="feature-box">
-        <div class="num" data-target="200" data-suffix="+">200+</div>
-        <div class="label">Happy customers</div>
-      </div>
-      <div class="feature-box">
-        <div class="num" data-target="8" data-suffix="+">8+</div>
-        <div class="label">Industries served</div>
-      </div>
-      <div class="feature-box">
-        <div class="num" data-target="100" data-suffix="%">100%</div>
-        <div class="label">In-house production</div>
-      </div>
-      <div class="feature-box">
-        <div class="num">🌍</div>
-        <div class="label">Pan-India & international delivery</div>
-      </div>
+      <p class="why-intro">Every uniform we make is produced in-house, start to finish — so we control the quality at every step. No outsourcing, no surprises, just consistent results you can rely on, order after order.</p>
     </div>
   </div>
 </section>
